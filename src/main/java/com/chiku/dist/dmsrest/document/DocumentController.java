@@ -16,23 +16,24 @@ public class DocumentController {
 		this.documentService = documentService;
 	}
 
-	@GetMapping(path = "/getdocumentList")
-	public List<DocumentMeta> getDocumentList() {
-		return documentService.getDocumentList();
+
+	@GetMapping(path = "/related/{number}")
+	public List<Document> getDocumentList(@PathVariable("number") Long number) {
+		return documentService.getDocumentList(number);
 	}
 
-	@PostMapping(path = "addDocument")
-	public void createDocument(@RequestBody DocumentMeta document) {
+	@PostMapping(path = "/add")
+	public void createDocument(@RequestBody Document document) {
 		documentService.addNewDocument(document);
 	}
 
-	@DeleteMapping(path = "{documentId}")
-	public void deleteDocument(@PathVariable("documentId") Long documentId) {
-		documentService.deleteDocument(documentId);
-	}
-
-	@PutMapping(path="{documentId}")
-	public void updateDocument(){
-
-	}
+//	@DeleteMapping(path = "/{documentId}")
+//	public void deleteDocument(@PathVariable("documentId") Long documentId) {
+//		documentService.deleteDocument(documentId);
+//	}
+//
+//	@PutMapping(path="/{documentId}")
+//	public void updateDocument(){
+//
+//	}
 }

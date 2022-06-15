@@ -4,6 +4,7 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
 import java.util.List;
+import java.util.stream.Collectors;
 
 @Service
 public class DocumentService {
@@ -14,11 +15,11 @@ public class DocumentService {
 		this.documentRepository = documentRepository;
 	}
 
-	public List<DocumentMeta> getDocumentList() {
-		return documentRepository.findAll();
+	public List<Document> getDocumentList(Long number) {
+		return documentRepository.findAll().stream().filter(f->f.getNumber().longValue() == number).collect(Collectors.toList());
 	}
 
-	public void addNewDocument(DocumentMeta document) {
+	public void addNewDocument(Document document) {
 		documentRepository.save(document);
 		throw new IllegalStateException("Nikam test kare");
 		//System.out.println(document);

@@ -7,7 +7,7 @@ import org.springframework.stereotype.Repository;
 import java.util.Optional;
 
 @Repository
-public interface DocumentRepository extends JpaRepository<DocumentMeta, Long> {
-	@Query("SELECT d FROM DocumentMeta d where d.number= ?1")
-	Optional<DocumentMeta> findDocumentMetaByNumber(String number);
+public interface DocumentRepository extends JpaRepository<Document, Long> {
+	@Query("SELECT d FROM Document d where d.number= ?1")
+	Optional<Document> findDocumentMetaByNumber(String number);
 }
