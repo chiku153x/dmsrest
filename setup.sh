@@ -1,6 +1,6 @@
 #!/bin/bash
 export APP_PROP="/opt/resources/application.properties"
-sed -i "s/V_DB_FULL_URL/${DB_FULL_URL}/g" ${APP_PROP}
+sed -i "s@V_DB_FULL_URL@${DB_FULL_URL}@g" ${APP_PROP}
 sed -i "s/V_DB_USER/${DB_USER}/g" ${APP_PROP}
 sed -i "s/V_DB_PASS/${DB_PASS}/g" ${APP_PROP}
 sed -i "s/V_DB_FULL_URL/${DB_FULL_URL}/g" ${APP_PROP}
