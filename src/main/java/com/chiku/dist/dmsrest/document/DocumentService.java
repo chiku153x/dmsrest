@@ -3,6 +3,7 @@ package com.chiku.dist.dmsrest.document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import java.util.Date;
 import java.util.List;
 import java.util.stream.Collectors;
 
@@ -16,13 +17,12 @@ public class DocumentService {
 	}
 
 	public List<Document> getDocumentList(Long number) {
-		return documentRepository.findAll().stream().filter(f->f.getNumber().longValue() == number).collect(Collectors.toList());
+		return documentRepository.findAll().stream().filter(f -> f.getNumber().longValue() == number).collect(Collectors.toList());
 	}
 
 	public void addNewDocument(Document document) {
+		document.setCreatedDate(new Date());
 		documentRepository.save(document);
-		throw new IllegalStateException("Nikam test kare");
-		//System.out.println(document);
 	}
 
 	public void deleteDocument(Long documentId) {

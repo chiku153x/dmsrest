@@ -6,14 +6,19 @@ import javax.persistence.*;
 @Table
 public class User {
 	@javax.persistence.Id
-	@SequenceGenerator(name = "document_sequence", sequenceName = "document_sequence", allocationSize = 1)
-	@GeneratedValue(strategy = GenerationType.IDENTITY, generator = "document_sequence")
+	@SequenceGenerator(name = "user_sequence", sequenceName = "user_sequence", allocationSize = 1)
+	@GeneratedValue(strategy = GenerationType.IDENTITY, generator = "user_sequence")
 	private Long Id;
 
 	private Long userId;
 	private String userName;
 	private String email;
 	private String password;
+
+
+	public User() {
+		super();
+	}
 
 	public User(Long id, Long userId, String userName, String email, String password) {
 		Id = id;

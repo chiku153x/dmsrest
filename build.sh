@@ -1,3 +1,7 @@
 #!/usr/bin/env bash
-TAG=dmsserv:latest
+if [[ -z "${D_TAG_VERSION}" ]]; then
+	TAG=dmsserv:latest
+else
+	TAG=dmsserv:${D_TAG_VERSION}
+fi
 docker build -t ${TAG} .

@@ -1,5 +1,7 @@
 package com.chiku.dist.dmsrest.document;
 
+import com.fasterxml.jackson.annotation.JsonFormat;
+
 import javax.persistence.*;
 import java.util.Date;
 
@@ -13,11 +15,15 @@ public class Document {
 	private String instance;
 	private String screen;
 	private Long number;
+
+	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Kuala_Lumpur")
 	private Date createdDate;
 	private String docName;
 	private String category;
 	private String subject;
 	private Long user;
+
+	private String docType;
 
 	public Document() {
 		super();
@@ -95,7 +101,7 @@ public class Document {
 		this.user = user;
 	}
 
-	public Document(Long id, String instance, String screen, Long number, Date createdDate, String docName, String category, String subject, Long user) {
+	public Document(Long id, String instance, String screen, Long number, Date createdDate, String docName, String category, String subject, Long user, String docType) {
 		Id = id;
 		this.instance = instance;
 		this.screen = screen;
@@ -105,20 +111,30 @@ public class Document {
 		this.category = category;
 		this.subject = subject;
 		this.user = user;
+		this.docType = docType;
+	}
+
+	public String getDocType() {
+		return docType;
+	}
+
+	public void setDocType(String docType) {
+		this.docType = docType;
 	}
 
 	@Override
 	public String toString() {
-		return "DocumentMeta{" +
+		return "Document{" +
 				"Id=" + Id +
 				", instance='" + instance + '\'' +
 				", screen='" + screen + '\'' +
-				", number='" + number + '\'' +
+				", number=" + number +
 				", createdDate=" + createdDate +
 				", docName='" + docName + '\'' +
 				", category='" + category + '\'' +
 				", subject='" + subject + '\'' +
 				", user=" + user +
+				", docType='" + docType + '\'' +
 				'}';
 	}
 }

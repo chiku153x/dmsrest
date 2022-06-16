@@ -1,6 +1,10 @@
 #!/usr/bin/env bash
-TAG=dmsserv:latest
-NAME=org
+if [[ -z "${D_TAG_VERSION}" ]]; then
+	TAG=dmsserv:latest
+else
+	TAG=dmsserv:${D_TAG_VERSION}
+fi
+NAME=dmsrest
 docker rm -f ${NAME} || true
 docker run -d --name ${NAME} \
 	-p 8080:8080 \
