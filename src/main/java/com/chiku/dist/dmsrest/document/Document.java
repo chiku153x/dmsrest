@@ -14,7 +14,7 @@ public class Document {
 	private Long Id;
 	private String instance;
 	private String screen;
-	private Long number;
+	private String number;
 
 	@JsonFormat(pattern = "yyyy-MM-dd HH:mm:ss", timezone = "Asia/Kuala_Lumpur")
 	private Date createdDate;
@@ -53,11 +53,11 @@ public class Document {
 		this.screen = screen;
 	}
 
-	public Long getNumber() {
+	public String getNumber() {
 		return number;
 	}
 
-	public void setNumber(Long number) {
+	public void setNumber(String number) {
 		this.number = number;
 	}
 
@@ -101,7 +101,7 @@ public class Document {
 		this.user = user;
 	}
 
-	public Document(Long id, String instance, String screen, Long number, Date createdDate, String docName, String category, String subject, Long user, String docType) {
+	public Document(Long id, String instance, String screen, String number, Date createdDate, String docName, String category, String subject, Long user, String docType) {
 		Id = id;
 		this.instance = instance;
 		this.screen = screen;

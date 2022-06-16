@@ -19,7 +19,7 @@ public class DocumentController {
 
 
 	@GetMapping(path = "/related/{number}")
-	public List<Document> getDocumentList(@PathVariable("number") Long number) {
+	public List<Document> getDocumentList(@PathVariable("number") String number) {
 		return documentService.getDocumentList(number);
 	}
 

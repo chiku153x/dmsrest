@@ -16,8 +16,8 @@ public class DocumentService {
 		this.documentRepository = documentRepository;
 	}
 
-	public List<Document> getDocumentList(Long number) {
-		return documentRepository.findAll().stream().filter(f -> f.getNumber().longValue() == number).collect(Collectors.toList());
+	public List<Document> getDocumentList(String number) {
+		return documentRepository.findAll().stream().filter(f -> f.getNumber().equals(number)).collect(Collectors.toList());
 	}
 
 	public void addNewDocument(Document document) {
