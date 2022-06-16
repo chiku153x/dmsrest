@@ -12,7 +12,6 @@ RUN --mount=type=cache,target=/root/.m2 mvn clean package -Dmaven.test.skip
 FROM amazoncorretto:17-al2-jdk
 USER root
 
-
 RUN mkdir /opt/resources \
     && chmod -R 777 /opt/resources \
     && mkdir /opt/tmp \
