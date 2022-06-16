@@ -1,0 +1,55 @@
+version: '3.3'
+services:
+  dmsrest:
+    image: chiku153/dmsrest:poc_v1
+    restart: always
+    environment:
+      DB_URL: 'jdbc:mysql://192.168.1.71:3320/dms'
+      DB_USER: 'root'
+      DB_PASS: 'password'
+    ports:
+      - '8080:8080'
+    expose:
+      - '8080'
+    networks:
+      - docmgt  
+
+  dmsui:
+    image: chiku153/dmsui:poc_v1
+    restart: always
+    environment:
+      DMS_REST_URL: 'http://192.168.1.71:8080'
+      DMS_UI_BASE_URL: 'http://192.168.1.71:8088'
+    ports:
+      - '8088:80'
+    expose:
+      - '80'
+    networks:
+      - docmgt 
+    volumes:
+      - /Users/gchinthaka/Desktop/dmsvol:/usr/share/nginx/html/doc 
+
+  maria:
+    platform: linux/arm64/v8
+    image: mariadb:10.2
+    restart: always
+    command: mysqld --sql_mode="" --character-set-server=utf8mb4 --collation-server=utf8mb4_general_ci 
+    environment:
+      MYSQL_DATABASE: 'db'
+      MYSQL_USER: 'user'
+      MYSQL_PASSWORD: 'password'
+      MYSQL_ROOT_PASSWORD: 'password'
+    ports:
+      - '3320:3306'
+    expose:
+      - '3306'
+    volumes:
+      - dms_vol:/var/lib/mysql
+    networks:
+      - docmgt  
+volumes:
+  dms_vol:
+
+networks:
+    docmgt:
+        driver: bridge
