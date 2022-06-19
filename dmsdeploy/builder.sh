@@ -1,6 +1,7 @@
 #!/bin/bash
+NOW=$(date +"%m%d%Y%H%M%S")
 export CURRENT_DIR=`pwd`
-export D_TAG_VERSION=poc_v1
+export D_TAG_VERSION=poc_${NOW}
 echo ${CURRENT_DIR}
 cd ${CURRENT_DIR}/../dmsrest && sh ./build.sh
 cd ${CURRENT_DIR}/../dmswebui && sh ./build.sh
