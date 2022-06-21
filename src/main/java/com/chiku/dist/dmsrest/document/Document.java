@@ -25,6 +25,8 @@ public class Document {
 
 	private String docType;
 
+	private String objectNumber;
+
 	public Document() {
 		super();
 	}
@@ -101,7 +103,7 @@ public class Document {
 		this.user = user;
 	}
 
-	public Document(Long id, String instance, String screen, String number, Date createdDate, String docName, String category, String subject, Long user, String docType) {
+	public Document(Long id, String instance, String screen, String number, Date createdDate, String docName, String category, String subject, Long user, String docType, String objectNumber) {
 		Id = id;
 		this.instance = instance;
 		this.screen = screen;
@@ -112,6 +114,7 @@ public class Document {
 		this.subject = subject;
 		this.user = user;
 		this.docType = docType;
+		this.objectNumber = objectNumber;
 	}
 
 	public String getDocType() {
@@ -122,19 +125,29 @@ public class Document {
 		this.docType = docType;
 	}
 
+	public String getObjectNumber() {
+		return objectNumber;
+	}
+
+	public void setObjectNumber(String objectNumber) {
+		this.objectNumber = objectNumber;
+	}
+
 	@Override
 	public String toString() {
 		return "Document{" +
 				"Id=" + Id +
 				", instance='" + instance + '\'' +
 				", screen='" + screen + '\'' +
-				", number=" + number +
+				", number='" + number + '\'' +
 				", createdDate=" + createdDate +
 				", docName='" + docName + '\'' +
 				", category='" + category + '\'' +
 				", subject='" + subject + '\'' +
 				", user=" + user +
 				", docType='" + docType + '\'' +
+				", objectNumber='" + objectNumber + '\'' +
 				'}';
 	}
 }
+
