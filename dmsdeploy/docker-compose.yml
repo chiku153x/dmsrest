@@ -1,7 +1,7 @@
 version: '3.3'
 services:
   dmsrest:
-    image: chiku153/dmsrest:poc_v3
+    image: chiku153/dmsrest:poc_v6
     restart: always
     environment:
       DB_FULL_URL: 'jdbc:mysql://192.168.0.50:3320/dms'
@@ -15,7 +15,7 @@ services:
       - docmgt
 
   dmsui:
-    image: chiku153/dmsui:poc_v3
+    image: chiku153/dmsui:poc_v6
     restart: always
     environment:
       DMS_REST_URL: 'http://192.168.0.50:8080'
