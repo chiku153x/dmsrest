@@ -20,6 +20,7 @@ services:
     environment:
       DMS_REST_URL: 'http://192.168.0.50:8080'
       DMS_UI_BASE_URL: 'http://192.168.0.50:8088'
+      DMS_FILE_SRV_URL: 'http://192.168.0.50:3000'
     ports:
       - '8088:80'
     expose:
