@@ -18,17 +18,17 @@ public class UserController {
 	}
 
 	@PostMapping(path = "/add")
-	public void createDocument(@RequestBody User user) {
+	public void createUser(@RequestBody User user) {
 		userService.addNewUser(user);
 	}
 
 	@GetMapping(path = "/get")
-	public List<User> getDocumentList() {
+	public List<User> getUserList() {
 		return userService.getUserList();
 	}
 
 	@GetMapping(path = "/get/{user_id}")
-	public List<User> getDocumentList(@PathVariable("user_id") Long userId) {
+	public List<User> getUserList(@PathVariable("user_id") Long userId) {
 		return userService.getUserById(userId);
 	}
 }

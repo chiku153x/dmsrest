@@ -11,6 +11,13 @@ public class Screen {
 	private Long Id;
 	private Long screenNumber;
 	private String screenName;
+	private String module;
+
+	private String instance;
+
+	public Screen() {
+		super();
+	}
 
 	public Long getId() {
 		return Id;
@@ -36,14 +43,28 @@ public class Screen {
 		this.screenName = screenName;
 	}
 
-	public Screen() {
-		super();
+	public String getModule() {
+		return module;
 	}
 
-	public Screen(Long id, Long screenNumber, String screenName) {
+	public void setModule(String module) {
+		this.module = module;
+	}
+
+	public String getInstance() {
+		return instance;
+	}
+
+	public void setInstance(String instance) {
+		this.instance = instance;
+	}
+
+	public Screen(Long id, Long screenNumber, String screenName, String module, String instance) {
 		Id = id;
 		this.screenNumber = screenNumber;
 		this.screenName = screenName;
+		this.module = module;
+		this.instance = instance;
 	}
 
 	@Override
@@ -52,6 +73,8 @@ public class Screen {
 				"Id=" + Id +
 				", screenNumber=" + screenNumber +
 				", screenName='" + screenName + '\'' +
+				", module='" + module + '\'' +
+				", instance='" + instance + '\'' +
 				'}';
 	}
 }

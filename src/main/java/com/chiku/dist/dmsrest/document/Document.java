@@ -27,8 +27,25 @@ public class Document {
 
 	private String objectNumber;
 
+	private String dir;
+
 	public Document() {
 		super();
+	}
+
+	public Document(Long id, String instance, String screen, String number, Date createdDate, String docName, String category, String subject, Long user, String docType, String objectNumber, String dir) {
+		Id = id;
+		this.instance = instance;
+		this.screen = screen;
+		this.number = number;
+		this.createdDate = createdDate;
+		this.docName = docName;
+		this.category = category;
+		this.subject = subject;
+		this.user = user;
+		this.docType = docType;
+		this.objectNumber = objectNumber;
+		this.dir = dir;
 	}
 
 	public Long getId() {
@@ -103,20 +120,6 @@ public class Document {
 		this.user = user;
 	}
 
-	public Document(Long id, String instance, String screen, String number, Date createdDate, String docName, String category, String subject, Long user, String docType, String objectNumber) {
-		Id = id;
-		this.instance = instance;
-		this.screen = screen;
-		this.number = number;
-		this.createdDate = createdDate;
-		this.docName = docName;
-		this.category = category;
-		this.subject = subject;
-		this.user = user;
-		this.docType = docType;
-		this.objectNumber = objectNumber;
-	}
-
 	public String getDocType() {
 		return docType;
 	}
@@ -133,21 +136,12 @@ public class Document {
 		this.objectNumber = objectNumber;
 	}
 
-	@Override
-	public String toString() {
-		return "Document{" +
-				"Id=" + Id +
-				", instance='" + instance + '\'' +
-				", screen='" + screen + '\'' +
-				", number='" + number + '\'' +
-				", createdDate=" + createdDate +
-				", docName='" + docName + '\'' +
-				", category='" + category + '\'' +
-				", subject='" + subject + '\'' +
-				", user=" + user +
-				", docType='" + docType + '\'' +
-				", objectNumber='" + objectNumber + '\'' +
-				'}';
+	public String getDir() {
+		return dir;
+	}
+
+	public void setDir(String dir) {
+		this.dir = dir;
 	}
 }
 

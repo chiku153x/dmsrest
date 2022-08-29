@@ -1,5 +1,6 @@
 package com.chiku.dist.dmsrest.screens;
 
+import com.chiku.dist.dmsrest.document.Document;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
@@ -16,6 +17,11 @@ public class ScreenController {
 	@Autowired
 	public ScreenController(ScreenService screenService) {
 		this.screenService = screenService;
+	}
+
+	@PostMapping(path = "/add")
+	public void createDocument(@RequestBody Screen screen) {
+		screenService.addNewScreen(screen);
 	}
 
 	@GetMapping(path = "/get")

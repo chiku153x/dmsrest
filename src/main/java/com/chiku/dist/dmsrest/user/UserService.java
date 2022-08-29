@@ -9,26 +9,30 @@ import java.util.stream.Collectors;
 
 @Service
 public class UserService {
-	private final UserRepository userRepository;
+    private final UserRepository userRepository;
 
-	@Autowired
-	public UserService(UserRepository userRepository) {
-		this.userRepository = userRepository;
-	}
+    @Autowired
+    public UserService(UserRepository userRepository) {
+        this.userRepository = userRepository;
+    }
 
-	public void addNewUser(User user) {
-		final Optional<User> userByUserId = userRepository.findUserByUserId(user.getUserId());
-		if (userByUserId.isPresent()) {
-			throw new IllegalStateException("User exists with user id : " + user.getUserId());
-		}
-		userRepository.save(user);
-	}
+    public void addNewUser(User user) {
+        List<User> users = userRepository.findAll()
+                .stream()
+                .filter(f -> f.getUserName().equals(user.getUserName())
+                        && f.getInstance().equals(user.getInstance()))
+                .toList();
+        if (!users.isEmpty()) {
+            user.setId(users.get(0).getId());
+        }
+        userRepository.save(user);
+    }
 
-	public List<User> getUserList() {
-		return userRepository.findAll();
-	}
+    public List<User> getUserList() {
+        return userRepository.findAll();
+    }
 
-	public List<User> getUserById(Long userId) {
-		return userRepository.findAll().stream().filter(f -> f.getUserId().longValue() == userId.longValue()).collect(Collectors.toList());
-	}
+    public List<User> getUserById(Long userId) {
+        return userRepository.findAll().stream().filter(f -> f.getUserId().longValue() == userId.longValue()).collect(Collectors.toList());
+    }
 }

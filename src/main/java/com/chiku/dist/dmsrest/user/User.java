@@ -5,77 +5,100 @@ import javax.persistence.*;
 @Entity
 @Table
 public class User {
-	@javax.persistence.Id
-	@SequenceGenerator(name = "user_sequence", sequenceName = "user_sequence", allocationSize = 1)
-	@GeneratedValue(strategy = GenerationType.IDENTITY, generator = "user_sequence")
-	private Long Id;
+    @javax.persistence.Id
+    @SequenceGenerator(name = "user_sequence", sequenceName = "user_sequence", allocationSize = 1)
+    @GeneratedValue(strategy = GenerationType.IDENTITY, generator = "user_sequence")
+    private Long Id;
 
-	private Long userId;
-	private String userName;
-	private String email;
-	private String password;
+    private Long userId;
+    private String userName;
+    private String email;
+    private String password;
 
+    private Boolean active;
 
-	public User() {
-		super();
-	}
+    private String instance;
 
-	public User(Long id, Long userId, String userName, String email, String password) {
-		Id = id;
-		this.userId = userId;
-		this.userName = userName;
-		this.email = email;
-		this.password = password;
-	}
+    public User() {
+        super();
+    }
 
-	public Long getId() {
-		return Id;
-	}
+    public User(Long id, Long userId, String userName, String email, String password, Boolean active, String instance) {
+        Id = id;
+        this.userId = userId;
+        this.userName = userName;
+        this.email = email;
+        this.password = password;
+        this.active = active;
+        this.instance = instance;
+    }
 
-	public void setId(Long id) {
-		Id = id;
-	}
+    public Long getId() {
+        return Id;
+    }
 
-	public Long getUserId() {
-		return userId;
-	}
+    public void setId(Long id) {
+        Id = id;
+    }
 
-	public void setUserId(Long userId) {
-		this.userId = userId;
-	}
+    public Long getUserId() {
+        return userId;
+    }
 
-	public String getUserName() {
-		return userName;
-	}
+    public void setUserId(Long userId) {
+        this.userId = userId;
+    }
 
-	public void setUserName(String userName) {
-		this.userName = userName;
-	}
+    public String getUserName() {
+        return userName;
+    }
 
-	public String getEmail() {
-		return email;
-	}
+    public void setUserName(String userName) {
+        this.userName = userName;
+    }
 
-	public void setEmail(String email) {
-		this.email = email;
-	}
+    public String getEmail() {
+        return email;
+    }
 
-	public String getPassword() {
-		return password;
-	}
+    public void setEmail(String email) {
+        this.email = email;
+    }
 
-	public void setPassword(String password) {
-		this.password = password;
-	}
+    public String getPassword() {
+        return password;
+    }
 
-	@Override
-	public String toString() {
-		return "User{" +
-				"Id=" + Id +
-				", userId=" + userId +
-				", userName='" + userName + '\'' +
-				", email='" + email + '\'' +
-				", password='" + password + '\'' +
-				'}';
-	}
+    public void setPassword(String password) {
+        this.password = password;
+    }
+
+    public Boolean getActive() {
+        return active;
+    }
+
+    public void setActive(Boolean active) {
+        this.active = active;
+    }
+
+    public String getInstance() {
+        return instance;
+    }
+
+    public void setInstance(String instance) {
+        this.instance = instance;
+    }
+
+    @Override
+    public String toString() {
+        return "User{" +
+                "Id=" + Id +
+                ", userId=" + userId +
+                ", userName='" + userName + '\'' +
+                ", email='" + email + '\'' +
+                ", password='" + password + '\'' +
+                ", active=" + active +
+                ", instance='" + instance + '\'' +
+                '}';
+    }
 }
