@@ -82,16 +82,14 @@ public class DocumentService {
 
         if (!chunks[8].trim().equals("")) {
             //Keywords are set
-            documents = documents.stream().filter(f->f.getKeywords().toLowerCase().startsWith(chunks[8].trim().toLowerCase())).toList();
+            List<Document> newDocList = new ArrayList<>();
+            String [] kws = chunks[8].trim().split(",");
+            for(String kw : kws) {
+                newDocList.addAll(documents.stream().filter(f -> f.getKeywords().toLowerCase().contains(kw.trim().toLowerCase())).toList());
+            }
+            documents = newDocList;
         }
 
-
-//		return documentRepository.findAll().stream().filter(f -> f.getObjectNumber().equals(text)
-//				|| f.getCategory().contains(text)
-//				|| f.getDocName().contains(text)
-//				|| f.getScreen().equals(text)
-//				|| f.getSubject().contains(text)
-//		).toList();
 
         HashMap<Integer, String> map = new HashMap<>();
         map.put(0, "Customer");
