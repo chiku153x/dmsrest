@@ -8,6 +8,7 @@ import org.springframework.web.bind.annotation.*;
 
 import java.util.List;
 
+@CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
 @RequestMapping(path = "api/v1/permission")
 public class PermissionController {
@@ -28,8 +29,8 @@ public class PermissionController {
         permissionService.deleteSinglePermission(permission);
     }
 
-    @GetMapping(path = "/get/{instance}/{user_name}")
-    public List<Permission> getPermissionListByUserName(@PathVariable("user_name") String userName,@PathVariable("instance") String instance) {
-        return permissionService.getPermissionsByUserName(userName,instance);
+    @GetMapping(path = "/get/{user_name}")
+    public List<Permission> getPermissionListByUserName(@PathVariable("user_name") String userName) {
+        return permissionService.getPermissionsByUserName(userName);
     }
 }

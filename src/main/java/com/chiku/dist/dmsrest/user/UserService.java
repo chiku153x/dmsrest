@@ -19,8 +19,7 @@ public class UserService {
     public void addNewUser(User user) {
         List<User> users = userRepository.findAll()
                 .stream()
-                .filter(f -> f.getUserName().equals(user.getUserName())
-                        && f.getInstance().equals(user.getInstance()))
+                .filter(f -> f.getUserName().equals(user.getUserName())                        )
                 .toList();
         if (!users.isEmpty()) {
             user.setId(users.get(0).getId());

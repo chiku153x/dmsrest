@@ -80,6 +80,11 @@ public class DocumentService {
             documents = documents.stream().filter(f->f.getSubject().toLowerCase().startsWith(chunks[7].trim().toLowerCase())).toList();
         }
 
+        if (!chunks[8].trim().equals("")) {
+            //Keywords are set
+            documents = documents.stream().filter(f->f.getKeywords().toLowerCase().startsWith(chunks[8].trim().toLowerCase())).toList();
+        }
+
 
 //		return documentRepository.findAll().stream().filter(f -> f.getObjectNumber().equals(text)
 //				|| f.getCategory().contains(text)

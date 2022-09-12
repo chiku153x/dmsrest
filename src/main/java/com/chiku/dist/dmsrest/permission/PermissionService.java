@@ -1,7 +1,6 @@
 package com.chiku.dist.dmsrest.permission;
 
-import com.chiku.dist.dmsrest.user.UserRepository;
-import org.hibernate.Session;
+
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
@@ -19,20 +18,19 @@ public class PermissionService {
     }
 
     public void addNewPermission(List<Permission> permission) {
-        List<Permission> allPermissions = getPermissionsByUserName(permission.get(0).getUserName(), permission.get(0).getInstance());
+        List<Permission> allPermissions = getPermissionsByUserName(permission.get(0).getUserName());
         permissionRepository.deleteAll(allPermissions);
         permissionRepository.saveAll(permission);
     }
 
-    public List<Permission> getPermissionsByUserName(String userName, String instance) {
-        return permissionRepository.findAll().stream().filter(f -> f.getUserName().equals(userName)
-                        && f.getInstance().equals(instance))
+    public List<Permission> getPermissionsByUserName(String userName) {
+
+        return permissionRepository.findAll().stream().filter(f -> f.getUserName().equals(userName))
                 .collect(Collectors.toList());
     }
 
-    public List<Permission> getPermissionsByUserNameAndScreenNo(String userName, String screenNumber, String instance) {
+    public List<Permission> getPermissionsByUserNameAndScreenNo(String userName, String screenNumber) {
         return permissionRepository.findAll().stream().filter(f -> f.getUserName().equals(userName)
-                        && f.getInstance().equals(instance)
                         && f.getScreen().equals(screenNumber))
                 .collect(Collectors.toList());
     }

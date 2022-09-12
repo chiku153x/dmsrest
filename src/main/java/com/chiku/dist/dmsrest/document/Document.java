@@ -12,7 +12,7 @@ public class Document {
 	@SequenceGenerator(name = "document_sequence", sequenceName = "document_sequence", allocationSize = 1)
 	@GeneratedValue(strategy = GenerationType.IDENTITY, generator = "document_sequence")
 	private Long Id;
-	private String instance;
+
 	private String screen;
 	private String number;
 
@@ -29,13 +29,14 @@ public class Document {
 
 	private String dir;
 
+	private String keywords;
+
 	public Document() {
 		super();
 	}
 
-	public Document(Long id, String instance, String screen, String number, Date createdDate, String docName, String category, String subject, Long user, String docType, String objectNumber, String dir) {
+	public Document(Long id, String screen, String number, Date createdDate, String docName, String category, String subject, Long user, String docType, String objectNumber, String dir, String keywords) {
 		Id = id;
-		this.instance = instance;
 		this.screen = screen;
 		this.number = number;
 		this.createdDate = createdDate;
@@ -46,6 +47,7 @@ public class Document {
 		this.docType = docType;
 		this.objectNumber = objectNumber;
 		this.dir = dir;
+		this.keywords = keywords;
 	}
 
 	public Long getId() {
@@ -56,13 +58,6 @@ public class Document {
 		Id = id;
 	}
 
-	public String getInstance() {
-		return instance;
-	}
-
-	public void setInstance(String instance) {
-		this.instance = instance;
-	}
 
 	public String getScreen() {
 		return screen;
@@ -142,6 +137,14 @@ public class Document {
 
 	public void setDir(String dir) {
 		this.dir = dir;
+	}
+
+	public String getKeywords() {
+		return keywords;
+	}
+
+	public void setKeywords(String keywords) {
+		this.keywords = keywords;
 	}
 }
 

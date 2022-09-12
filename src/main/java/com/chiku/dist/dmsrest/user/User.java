@@ -17,20 +17,18 @@ public class User {
 
     private Boolean active;
 
-    private String instance;
 
     public User() {
         super();
     }
 
-    public User(Long id, Long userId, String userName, String email, String password, Boolean active, String instance) {
+    public User(Long id, Long userId, String userName, String email, String password, Boolean active) {
         Id = id;
         this.userId = userId;
         this.userName = userName;
         this.email = email;
         this.password = password;
         this.active = active;
-        this.instance = instance;
     }
 
     public Long getId() {
@@ -81,13 +79,7 @@ public class User {
         this.active = active;
     }
 
-    public String getInstance() {
-        return instance;
-    }
 
-    public void setInstance(String instance) {
-        this.instance = instance;
-    }
 
     @Override
     public String toString() {
@@ -98,7 +90,6 @@ public class User {
                 ", email='" + email + '\'' +
                 ", password='" + password + '\'' +
                 ", active=" + active +
-                ", instance='" + instance + '\'' +
                 '}';
     }
 }

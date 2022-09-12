@@ -7,7 +7,6 @@ import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.nio.file.AccessDeniedException;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.List;
@@ -30,7 +29,7 @@ public class DocumentController {
 
     @PostMapping(path = "/related/{number}")
     public ResponseEntity getDocumentList(@PathVariable("number") String number, @RequestBody DocumentVO documentVo) {
-        List<Permission> permissions = permissionService.getPermissionsByUserNameAndScreenNo(documentVo.getUser(), documentVo.getScreen(), documentVo.getInstance());
+        List<Permission> permissions = permissionService.getPermissionsByUserNameAndScreenNo(documentVo.getUser(), documentVo.getScreen());
         if (permissions.isEmpty()) {
             return new ResponseEntity(HttpStatus.FORBIDDEN);
         }
@@ -60,7 +59,7 @@ public class DocumentController {
         int i = 0;
         for (Document doc : dataFromDb) {
             i++;
-            String str[] = new String[8];
+            String str[] = new String[9];
             str[0] = i + "";
             str[1] = doc.getObjectNumber();
             str[2] = doc.getScreen();
@@ -68,10 +67,8 @@ public class DocumentController {
             str[4] = doc.getSubject();
             str[5] = doc.getDocName();
             str[6] = doc.getCreatedDate().toString();
-
-            //instance,screen,number,docName
-            //str[7] = "<span onClick='docView(\"" +doc.getInstance()+ "\",\""+doc.getScreen()+"\",\""+doc.getNumber()+"\",\""+doc.getDocName()+"\")' class='actions'>View</span> | <span onClick='docDownload(\""+doc.getNumber()+"\")' class='actions'>Download</span>";
-            str[7] = "<span onClick='docView(\"" + doc.getDir()+  "\",\"" + doc.getDocName() + "\")' class='actions'>view</span>";
+            str[7] = doc.getKeywords();
+            str[8] = "<span onClick='docView(\"" + doc.getDir()+  "\",\"" + doc.getDocName() + "\")' class='actions'>view</span>";
 
             finalDataList.add(str);
         }

@@ -19,18 +19,16 @@ public class Permission {
 
     private Boolean active;
 
-    private String instance;
 
     public Permission() {
         super();
     }
 
-    public Permission(Long id, String screen, String userName, Boolean active, String instance) {
+    public Permission(Long id, String screen, String userName, Boolean active) {
         this.id = id;
         this.screen = screen;
         this.userName = userName;
         this.active = active;
-        this.instance = instance;
     }
 
     public Long getId() {
@@ -65,13 +63,6 @@ public class Permission {
         this.active = active;
     }
 
-    public String getInstance() {
-        return instance;
-    }
-
-    public void setInstance(String instance) {
-        this.instance = instance;
-    }
 
     @Override
     public String toString() {
@@ -80,7 +71,6 @@ public class Permission {
                 ", screen='" + screen + '\'' +
                 ", userName='" + userName + '\'' +
                 ", active=" + active +
-                ", instance='" + instance + '\'' +
                 '}';
     }
 }
