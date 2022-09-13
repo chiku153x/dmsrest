@@ -24,10 +24,10 @@ public class TypeController {
         typeService.addNewType(type);
     }
 
-//    @GetMapping(path = "/get")
-//    public List<Type> getScreenList() {
-//        return typeService.getTypeList();
-//    }
+    @GetMapping(path = "/get")
+    public List<Type> getTypeList() {
+        return typeService.getTypeList();
+    }
 
 //    @GetMapping(path = "/get/{number}")
 //    public Type getTypeByNumber(@PathVariable("number") String number) {
