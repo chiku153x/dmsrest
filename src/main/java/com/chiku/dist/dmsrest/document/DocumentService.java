@@ -1,14 +1,24 @@
 package com.chiku.dist.dmsrest.document;
 
+import com.chiku.dist.dmsrest.typelist.Type;
+import com.chiku.dist.dmsrest.typelist.TypeService;
+import org.apache.commons.lang3.time.DateUtils;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+
+import java.text.ParseException;
 import java.util.*;
+import java.util.concurrent.TimeUnit;
 import java.util.stream.Collectors;
+import java.text.SimpleDateFormat;
 
 @Service
 public class DocumentService {
     private final DocumentRepository documentRepository;
+
+    @Autowired
+    private TypeService typeService;
 
     @Autowired
     public DocumentService(DocumentRepository documentRepository) {
@@ -72,19 +82,40 @@ public class DocumentService {
 
         if (!chunks[4].trim().equals("") && !chunks[5].trim().equals("")) {
             //Date from and To are set
-            //documents = documents.stream().filter(f->f.getObjectNumber().equals(chunks[4].trim())).toList();
+            String format = "yyyy-MM-dd";
+            try {
+                Date dateFrom = new SimpleDateFormat(format).parse(chunks[4].trim());
+                Date dateTo = new SimpleDateFormat(format).parse(chunks[5].trim());
+                documents = documents.stream().filter(f -> {
+                  Date createDate =   DateUtils.truncate(f.getCreatedDate(), Calendar.DATE);
+                  return createDate.getTime() >= dateFrom.getTime() && createDate.getTime() <=dateTo.getTime();
+                 }).toList();
+            } catch (ParseException e) {
+                throw new RuntimeException(e);
+            }
+
+        }
+
+        if (!chunks[6].trim().equals("") && !chunks[0].trim().equals("")) {
+            //Category
+            List<Type> types = typeService.getTypeList().stream().filter(f -> f.getItemNo().equals(chunks[6].trim()) &&
+                    f.getScreenNo().equals(chunks[0].trim())).toList();
+            if (!types.isEmpty()) {
+                documents = documents.stream().filter(f -> f.getCategory().equals(types.get(0).getItemText())).toList();
+            }
+
         }
 
         if (!chunks[7].trim().equals("")) {
             //Subject is set
-            documents = documents.stream().filter(f->f.getSubject().toLowerCase().startsWith(chunks[7].trim().toLowerCase())).toList();
+            documents = documents.stream().filter(f -> f.getSubject().toLowerCase().startsWith(chunks[7].trim().toLowerCase())).toList();
         }
 
         if (!chunks[8].trim().equals("")) {
             //Keywords are set
             List<Document> newDocList = new ArrayList<>();
-            String [] kws = chunks[8].trim().split(",");
-            for(String kw : kws) {
+            String[] kws = chunks[8].trim().split(",");
+            for (String kw : kws) {
                 newDocList.addAll(documents.stream().filter(f -> f.getKeywords().toLowerCase().contains(kw.trim().toLowerCase())).toList());
             }
             documents = newDocList;
