@@ -8,8 +8,9 @@ NAME=dmsrest
 docker rm -f ${NAME} || true
 docker run -d --name ${NAME} \
 	-p 8080:8080 \
-	-e DB_FULL_URL=jdbc:mysql://localhost:3310/dms \
+	-e DB_FULL_URL=jdbc:mysql://192.168.1.71:3310/dms \
 	-e DB_USER=root \
 	-e DB_PASS=password \
+	-e DMS_FILE_PATH=/Users/gchinthaka/Desktop/xx \
 	${TAG}
 
