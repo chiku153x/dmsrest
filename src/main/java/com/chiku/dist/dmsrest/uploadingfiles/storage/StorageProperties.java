@@ -7,12 +7,12 @@ import org.springframework.boot.context.properties.ConfigurationProperties;
 public class StorageProperties {
 
 
-	/**
-	 * Folder location for storing files
-	 * private String location = "/Users/gchinthaka/Desktop/xx";
-	 */
-	@Value("${DMS_FILE_PATH}")
-	private String location;
+
+	 //* Folder location for storing files
+	 private String location = "/Users/gchinthaka/Desktop/xx";
+
+//	@Value("${DMS_FILE_PATH}")
+//	private String location;
 
 	public String getLocation() {
 		return location;

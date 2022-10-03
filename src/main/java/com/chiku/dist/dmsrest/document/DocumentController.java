@@ -1,16 +1,16 @@
 package com.chiku.dist.dmsrest.document;
 
+import com.chiku.dist.dmsrest.login.Login;
+import com.chiku.dist.dmsrest.login.LoginService;
 import com.chiku.dist.dmsrest.permission.Permission;
 import com.chiku.dist.dmsrest.permission.PermissionService;
+import org.aspectj.lang.annotation.Before;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.*;
 
-import java.util.ArrayList;
-import java.util.HashMap;
-import java.util.List;
-import java.util.Map;
+import java.util.*;
 
 @CrossOrigin(origins = "*", maxAge = 3600)
 @RestController
@@ -19,6 +19,7 @@ public class DocumentController {
 
     private final DocumentService documentService;
     private final PermissionService permissionService;
+
 
     @Autowired
     public DocumentController(DocumentService documentService, PermissionService permissionService) {
@@ -29,15 +30,18 @@ public class DocumentController {
 
     @PostMapping(path = "/related/{number}")
     public ResponseEntity getDocumentList(@PathVariable("number") String number, @RequestBody DocumentVO documentVo) {
+        Map<String,String> message = new HashMap<>();
+
         List<Permission> permissions = permissionService.getPermissionsByUserNameAndScreenNo(documentVo.getUser(), documentVo.getScreen());
         if (permissions.isEmpty()) {
-            return new ResponseEntity(HttpStatus.FORBIDDEN);
+            message.put("message","No permission");
+            return new ResponseEntity(message,HttpStatus.FORBIDDEN);
         }
         return new ResponseEntity(documentService.getDocumentList(number),HttpStatus.OK);
     }
 
     @PostMapping(path = "/add")
-    public void createDocument(@RequestBody Document document) {
+    public void createDocument(@RequestBody Document document, @RequestHeader("token") String token) {
         documentService.addNewDocument(document);
     }
 

@@ -14,21 +14,12 @@ public class User {
     private String userName;
     private String email;
     private String password;
-
+    private String role;
     private Boolean active;
 
 
     public User() {
         super();
-    }
-
-    public User(Long id, Long userId, String userName, String email, String password, Boolean active) {
-        Id = id;
-        this.userId = userId;
-        this.userName = userName;
-        this.email = email;
-        this.password = password;
-        this.active = active;
     }
 
     public Long getId() {
@@ -71,6 +62,14 @@ public class User {
         this.password = password;
     }
 
+    public String getRole() {
+        return role;
+    }
+
+    public void setRole(String role) {
+        this.role = role;
+    }
+
     public Boolean getActive() {
         return active;
     }
@@ -79,17 +78,13 @@ public class User {
         this.active = active;
     }
 
-
-
-    @Override
-    public String toString() {
-        return "User{" +
-                "Id=" + Id +
-                ", userId=" + userId +
-                ", userName='" + userName + '\'' +
-                ", email='" + email + '\'' +
-                ", password='" + password + '\'' +
-                ", active=" + active +
-                '}';
+    public User(Long id, Long userId, String userName, String email, String password, String role, Boolean active) {
+        Id = id;
+        this.userId = userId;
+        this.userName = userName;
+        this.email = email;
+        this.password = password;
+        this.role = role;
+        this.active = active;
     }
 }

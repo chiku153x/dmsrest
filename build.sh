@@ -4,4 +4,4 @@ if [[ -z "${D_TAG_VERSION}" ]]; then
 else
 	TAG=dmsserv:${D_TAG_VERSION}
 fi
-docker build -t ${TAG} .
+docker build  -t ${TAG} .
