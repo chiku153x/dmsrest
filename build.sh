@@ -1,7 +1,6 @@
 #!/usr/bin/env bash
-if [[ -z "${D_TAG_VERSION}" ]]; then
-	TAG=dmsserv:latest
-else
-	TAG=dmsserv:${D_TAG_VERSION}
-fi
-docker build  -t ${TAG} .
+
+TAG=chiku153/dmsrest:v.010
+#TAG=synchrorkkk/dmsrest:v.003
+
+docker buildx build --no-cache --platform=linux/amd64,linux/arm64 -t ${TAG}  ${tag} --push .

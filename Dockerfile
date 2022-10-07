@@ -1,13 +1,14 @@
 FROM maven:3.8.5-amazoncorretto-17 as builder
 LABEL authors="chinthaka.gayan@gmail.com"
 USER root
+RUN echo "07-10-2022_3"
 WORKDIR /tmp/app
 COPY src ./src
 COPY pom.xml ./
 
 #This works only with the latest docker versions
-RUN --mount=type=cache,target=/root/.m2 mvn clean package -Dmaven.test.skip
-#RUN  mvn clean package -Dmaven.test.skip
+#RUN --mount=type=cache,target=/root/.m2 mvn clean package -Dmaven.test.skip
+RUN  mvn clean package -Dmaven.test.skip
 
 FROM amazoncorretto:17-al2-jdk
 USER root
@@ -20,6 +21,8 @@ RUN mkdir /opt/resources \
 WORKDIR /opt/target
 COPY --from=builder  /tmp/app/target .
 COPY conf/application.properties /opt/resources
+RUN mkdir /tmp/docs
+RUN chmod -R 777 /tmp/docs
 COPY ["setup.sh",  "./"]
 
 EXPOSE 8080 5005

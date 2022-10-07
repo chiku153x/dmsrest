@@ -21,6 +21,7 @@ public class ScreenService {
 
 
     public void addNewScreen(Screen screen) {
+
         List<Screen> screens = screenRepository.findAll().stream().filter(f -> f.getScreenNumber().longValue() == screen.getScreenNumber().longValue()).toList();
         if (!screens.isEmpty()) {
             screen.setId(screens.get(0).getId());

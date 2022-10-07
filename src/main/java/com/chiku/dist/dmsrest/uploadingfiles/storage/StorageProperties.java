@@ -9,10 +9,10 @@ public class StorageProperties {
 
 
 	 //* Folder location for storing files
-	 private String location = "/Users/gchinthaka/Desktop/xx";
+	 //private String location = "/Users/gchinthaka/Desktop/erp";
 
-//	@Value("${DMS_FILE_PATH}")
-//	private String location;
+	@Value("${dms_file_path}")
+	private String location;
 
 	public String getLocation() {
 		return location;
