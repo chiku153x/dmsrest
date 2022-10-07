@@ -1,7 +1,7 @@
 FROM maven:3.8.5-amazoncorretto-17 as builder
 LABEL authors="chinthaka.gayan@gmail.com"
 USER root
-RUN echo "07-10-2022_3"
+RUN echo "07-10-2022_5"
 WORKDIR /tmp/app
 COPY src ./src
 COPY pom.xml ./
@@ -21,8 +21,8 @@ RUN mkdir /opt/resources \
 WORKDIR /opt/target
 COPY --from=builder  /tmp/app/target .
 COPY conf/application.properties /opt/resources
-RUN mkdir /tmp/docs
-RUN chmod -R 777 /tmp/docs
+RUN mkdir /home/docs
+RUN chmod -R 777 /home/docs
 COPY ["setup.sh",  "./"]
 
 EXPOSE 8080 5005
