@@ -1,6 +1,7 @@
 package com.chiku.dist.dmsrest;
 
-import com.chiku.dist.dmsrest.uploadingfiles.storage.StorageService;
+import com.chiku.dist.dmsrest.config.RsaKeyProperties;
+import com.chiku.dist.dmsrest.service.StorageService;
 import org.springframework.boot.CommandLineRunner;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
@@ -12,11 +13,13 @@ import org.springframework.web.bind.annotation.RestController;
 
 import java.util.List;
 
-import com.chiku.dist.dmsrest.uploadingfiles.storage.StorageProperties;
+import com.chiku.dist.dmsrest.config.StorageProperties;
+import springfox.documentation.swagger2.annotations.EnableSwagger2;
 
 @SpringBootApplication
 @RestController
-@EnableConfigurationProperties(StorageProperties.class)
+@EnableConfigurationProperties({StorageProperties.class, RsaKeyProperties.class})
+@EnableSwagger2
 public class DmsrestApplication {
 
     public static void main(String[] args) {
