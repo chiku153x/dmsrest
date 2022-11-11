@@ -7,9 +7,9 @@ public class StorageProperties {
 
 
     //* Folder location for storing files
-    private String location = "/home/docs";
+    //private String location = "/home/docs";
 
-    //private String location ="/Users/gchinthaka/Desktop/erp";
+    private String location ="/Users/gchinthaka/Desktop/erp";
 
 
     public String getLocation() {
